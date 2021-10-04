@@ -27,3 +27,12 @@ p{
   line-height: 18px;
   margin:33px;
 }
+
+.field,.actions{
+  margin-bottom: 10px;
+}
+
+
+label{
+  display: block;
+}
