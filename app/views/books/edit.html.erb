@@ -1,24 +1,28 @@
 <%if flash[:notice]%>
  <p id="notice">
-   <%=flash[:notice]%>
+  <%=flash[:notice]%>
  </p>
 <%end%>
 
 <h1>Editing Book</h1>
 <%=form_with model:@book,url:"/books/#{@book.id}",local:true do |f|%>
+
+<%if @book.errors.any?%>
+ <ul><%=@book.errors.count%>errors prohidited this book from being saved:
+  <%@book.errors.full_messages.each do |message|%>
+  <li><%=message%></li>
+  <%end%>
+ </ul>
+<%end%>
 <div class="field">
   <%=f.label :book_title,"Title"%>
   <%=f.text_field :title%>
 </div>
-
 <div class="field">
   <%=f.label :book_body,"Body"%>
   <%=f.text_area :body%>
 </div>
-
-<div class="actions">
-  <%=f.submit"Update Book"%>
-</div>
+<input type="submit" value"Create Book" class="actions">
 <%end%>
 
 <%=link_to "Show",book_path(@book.id)%>
